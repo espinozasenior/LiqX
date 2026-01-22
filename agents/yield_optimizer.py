@@ -13,6 +13,12 @@ NO MOCK DATA - ALL REAL:
 - Real-time yield optimization (min 0.5% improvement)
 """
 
+import os
+import sys
+
+# Add parent directory to path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from agents.metta_reasoner import get_metta_reasoner
 from data.protocol_data import get_protocol_data_fetcher
 from agents.message_protocols import (
@@ -21,8 +27,6 @@ from agents.message_protocols import (
     HealthCheckRequest,
     HealthCheckResponse
 )
-import os
-import sys
 import time
 import json
 from typing import Dict, Optional, List
@@ -31,8 +35,6 @@ from loguru import logger
 from uagents import Agent, Context
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from threading import Thread
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 load_dotenv()

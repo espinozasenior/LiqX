@@ -13,6 +13,12 @@ NO MOCK DATA - ALL REAL:
 - Risk assessment via MeTTa AI reasoner
 """
 
+import os
+import sys
+
+# Add parent directory to path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from agents.metta_reasoner import get_metta_reasoner
 from data.ethereum_tokens import get_token_symbol
 from data.price_feeds import get_price_feed_manager
@@ -24,8 +30,6 @@ from agents.message_protocols import (
     HealthCheckResponse,
     ExecutionResult
 )
-import os
-import sys
 import time
 import json
 from typing import Dict, List
@@ -34,9 +38,6 @@ from loguru import logger
 from uagents import Agent, Context
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from threading import Thread
-
-# Add parent directory to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 load_dotenv()

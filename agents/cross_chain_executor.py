@@ -14,14 +14,18 @@ NO MOCK DATA - ALL REAL:
 - Real cross-chain bridges
 """
 
+import os
+import sys
+
+# Add parent directory to path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from agents.message_protocols import (
     ExecutionPlan,
     ExecutionResult,
     HealthCheckRequest,
     HealthCheckResponse
 )
-import os
-import sys
 import time
 import json
 from typing import Dict, List
@@ -30,8 +34,6 @@ from loguru import logger
 from uagents import Agent, Context
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from threading import Thread
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Import Fusion+ cross-chain bridge

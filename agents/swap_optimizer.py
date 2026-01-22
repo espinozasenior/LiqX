@@ -13,14 +13,18 @@ NO MOCK DATA - ALL REAL:
 - Real token prices and slippage calculations
 """
 
+import os
+import sys
+
+# Add parent directory to path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from agents.message_protocols import (
     OptimizationStrategy,
     ExecutionPlan,
     HealthCheckRequest,
     HealthCheckResponse
 )
-import os
-import sys
 import time
 import json
 from typing import Dict, List, Optional
@@ -29,8 +33,6 @@ from loguru import logger
 from uagents import Agent, Context
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from threading import Thread
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Import Fusion+ cross-chain bridge
