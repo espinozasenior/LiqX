@@ -5,10 +5,10 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ liq-x",
-    "create-local": "graph create --node http://localhost:8020/ liq-x",
-    "remove-local": "graph remove --node http://localhost:8020/ liq-x",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 liq-x",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ cashew-subgraph",
+    "create-local": "graph create --node http://localhost:8020/ cashew-subgraph",
+    "remove-local": "graph remove --node http://localhost:8020/ cashew-subgraph",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 cashew-subgraph",
     "test": "graph test"
   },
   "devDependencies": {

@@ -56,7 +56,7 @@ export const API_CONFIG = {
   theGraph: {
     // Using your custom LiqX subgraph on Ethereum Mainnet (always uses latest version)
     // Falls back to mock data if unavailable (expected for hackathon demo)
-    subgraphUrl: process.env.NEXT_PUBLIC_LIQX_SUBGRAPH_URL || 'https://api.studio.thegraph.com/query/1704206/liq-x/version/latest',
+    subgraphUrl: process.env.NEXT_PUBLIC_LIQX_SUBGRAPH_URL || 'https://api.studio.thegraph.com/query/1723368/cashew-subgraph/version/latest',
     fallbackUrl: 'https://api.studio.thegraph.com/query/52869/aave-v3-ethereum/version/latest',
     updateInterval: 10000, // 10 seconds
   },

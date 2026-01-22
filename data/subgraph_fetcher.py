@@ -9,7 +9,7 @@ from typing import Dict, List, Optional
 from loguru import logger
 
 SUBGRAPH_URL = os.getenv(
-    "LIQX_SUBGRAPH_URL", "https://api.studio.thegraph.com/query/1704206/liq-x/version/latest")
+    "LIQX_SUBGRAPH_URL", "https://api.studio.thegraph.com/query/1723368/cashew-subgraph/version/latest")
 
 
 class SubgraphFetcher:

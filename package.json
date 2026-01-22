@@ -12,6 +12,7 @@
   "dependencies": {
     "@1inch/byte-utils": "^3.1.1",
     "@1inch/cross-chain-sdk": "^1.1.1",
+    "@graphprotocol/graph-ts": "^0.38.2",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.8",
