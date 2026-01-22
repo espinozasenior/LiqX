@@ -9,7 +9,7 @@
 Before starting, ensure you have:
 
 - ✅ **Node.js 18+** and **pnpm** installed
-- ✅ **Python 3.10+** and **pip** installed
+- ✅ **Python 3.11+** and **uv** installed
 - ✅ **1inch API Key** (get free at https://portal.1inch.dev/)
 - ✅ **4 terminal windows** available
 
@@ -25,12 +25,10 @@ cd LiqX
 # Install frontend dependencies
 pnpm install
 
-# Create Python virtual environment
-python -m venv .venv
+# Install Python dependencies
+uv sync
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-# Install Python dependencies
-pip install uagents fetch-ai-agents loguru aiohttp python-dotenv requests
 ```
 
 ---
@@ -500,8 +498,8 @@ await ctx.send(YIELD_OPTIMIZER_ADDRESS, PositionAlert(...))
 
 **Fix**:
 ```bash
+uv sync
 source .venv/bin/activate
-pip install uagents fetch-ai-agents
 ```
 
 ---

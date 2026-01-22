@@ -661,7 +661,7 @@ Candidate 3: compound (ethereum) - 12.45% APY
 ### Prerequisites
 
 - Node.js 18+ and pnpm
-- Python 3.10+ and pip
+- Python 3.11+ and uv
 - 1inch API key ([get here](https://portal.1inch.dev/))
 - The Graph API key (optional, using hosted endpoint)
 
@@ -784,7 +784,7 @@ LiqX/
 
 ### Backend (Agents)
 - **Fetch.ai uAgents**: Autonomous agent framework
-- **Python 3.10+**: Agent runtime
+- **Python 3.11+**: Agent runtime
 - **aiohttp**: Async HTTP client for APIs
 - **loguru**: Structured logging
 
@@ -861,5 +861,3 @@ MIT License - see [LICENSE](LICENSE) file
 - **Issues**: GitHub Issues for bug reports
 
 ---
-
-**Built for ETHGlobal Bangkok 2024 Hackathon** 🇹🇭
