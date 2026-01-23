@@ -1103,6 +1103,25 @@ wheels = [
 ]
 
 [[package]]
+name = "hyperon"
+version = "0.2.9"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/9e/d4/6dfd6ae2a6cf8406e06f0743f51343c7172a594eaa9ded1bbf50476899e4/hyperon-0.2.9-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:d138a10ae21be18ae3afd96e7d6a9a4f016bc3b249676d2e69e005e2457cfdf2", size = 7256313, upload-time = "2025-11-26T07:22:15.293Z" },
+    { url = "https://files.pythonhosted.org/packages/74/d0/db1242848002932cd099af8edd359dbab64b46a3fe82d8765af862813a6b/hyperon-0.2.9-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:49c009f912af1bd9d40d1421da26b2f380a7459673a03ed52a06dfb2cd297d52", size = 7161962, upload-time = "2025-11-26T07:22:17.164Z" },
+    { url = "https://files.pythonhosted.org/packages/2a/10/e0b06fa9ab082aa2c19c2d4b6c66b1524c1d55b5ab3446d1a4283da9eaf9/hyperon-0.2.9-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:0f3bd0fb87525147a810b151568d72a135e83ca41b3a754285cba7d14d82e0a8", size = 6877336, upload-time = "2025-11-26T07:22:19.058Z" },
+    { url = "https://files.pythonhosted.org/packages/a3/9d/0d07482614c1928ddf750e78a7a44708f0dfec1d14fc444ad52b22c20721/hyperon-0.2.9-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:71915bdc12b81f84c603fc284a81338870532cc86ec34cb8f4175d466d3f741e", size = 7584061, upload-time = "2025-11-26T07:22:20.678Z" },
+    { url = "https://files.pythonhosted.org/packages/b8/73/20cd6aa30b40758727b4449607bb205b8e5bbd805df5cf0e2c7f2f2d8740/hyperon-0.2.9-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d12e5c1d81751c83129c80fea00e78c7c95991c924e123c136107d9da888e2fd", size = 7460028, upload-time = "2025-11-26T07:22:24.422Z" },
+    { url = "https://files.pythonhosted.org/packages/71/53/85a8e2604fb1bf7045c3cc1a3a24b090854b035b1d41bbf69c9217bcb3bf/hyperon-0.2.9-cp311-cp311-win_amd64.whl", hash = "sha256:266ab8de30d60cda4c387c7e06d89b327bf13e8b4e03c72d76f217311ed819e1", size = 5544464, upload-time = "2025-11-26T07:22:26.035Z" },
+    { url = "https://files.pythonhosted.org/packages/51/cd/c8692a906cf06ef51adc9c924cfe17dad7caea8fa2048e85b317015d41d0/hyperon-0.2.9-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:29919a85d5083b563837e7084a7e59abade85a95becd245f6000ae5a51f19004", size = 7260507, upload-time = "2025-11-26T07:22:27.829Z" },
+    { url = "https://files.pythonhosted.org/packages/b7/78/d27dcda9d25d32b06d7c16e55f43a394739c08413e2fafccc52b6af6e4ad/hyperon-0.2.9-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:09b5ef7f7446dc9543f4b6fa0d47238a39c01a902f5142ec8e9773906ef50d4b", size = 7161703, upload-time = "2025-11-26T07:22:30.527Z" },
+    { url = "https://files.pythonhosted.org/packages/46/28/758c6d0b79ab574c0290f333bae1d1ed581faca64b7d1b3c184730314968/hyperon-0.2.9-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:b0e09e78a7622af920342df0ef8b5818a5b8b2c3c531c4c0bc97748358be9cf7", size = 6874091, upload-time = "2025-11-26T07:22:32.504Z" },
+    { url = "https://files.pythonhosted.org/packages/7a/fb/628237343d78de269062d82b29ead3d87ad01aea103d37837a09be1f8321/hyperon-0.2.9-cp312-cp312-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:0797fbeb9fcaf336af6c90042ce7912a8f085b50e63034b0d6935006612f4b61", size = 7584446, upload-time = "2025-11-26T07:22:34.244Z" },
+    { url = "https://files.pythonhosted.org/packages/c2/31/a89c8bbeec645b5fb61589704bba3af58dd03fe2794dcd3158a68c4fa9aa/hyperon-0.2.9-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d1bf1d7a43dc4e5ca9504e5651401dffc9674c73003afc963df9decf94ea0879", size = 7460229, upload-time = "2025-11-26T07:22:36.21Z" },
+    { url = "https://files.pythonhosted.org/packages/15/26/1bf60ee07194d34fffc5d4b859b0c864f8c1080066abdc44e6acc4a4db71/hyperon-0.2.9-cp312-cp312-win_amd64.whl", hash = "sha256:c4e5459e8247382a65ac55aa4d2b474e40c5f86c01ef1d13e037edc38a3f2d8c", size = 5545312, upload-time = "2025-11-26T07:22:38.037Z" },
+]
+
+[[package]]
 name = "idna"
 version = "3.11"
 source = { registry = "https://pypi.org/simple" }
@@ -1165,6 +1184,7 @@ dependencies = [
     { name = "cosmpy" },
     { name = "gql", extra = ["all"] },
     { name = "graphql-core" },
+    { name = "hyperon" },
     { name = "loguru" },
     { name = "python-dotenv" },
     { name = "requests" },
@@ -1184,6 +1204,7 @@ requires-dist = [
     { name = "cosmpy", specifier = ">=0.11.0" },
     { name = "gql", extras = ["all"], specifier = "==3.5.0" },
     { name = "graphql-core", specifier = "==3.2.5" },
+    { name = "hyperon", specifier = ">=0.1.0" },
     { name = "loguru", specifier = "==0.7.3" },
     { name = "python-dotenv", specifier = "==1.0.1" },
     { name = "requests", specifier = "==2.32.3" },

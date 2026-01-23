@@ -9,6 +9,7 @@ dependencies = [
     "cosmpy>=0.11.0",
     "gql[all]==3.5.0",
     "graphql-core==3.2.5",
+    "hyperon>=0.1.0",
     "loguru==0.7.3",
     "python-dotenv==1.0.1",
     "requests==2.32.3",
