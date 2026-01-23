@@ -45,6 +45,8 @@ load_dotenv()
 
 AGENT_SEED = os.getenv('AGENT_SEED_YIELD_OPTIMIZER')
 AGENT_PORT = int(os.getenv('YIELD_OPTIMIZER_PORT', '8001'))
+HTTP_PORT = int(os.getenv('YIELD_OPTIMIZER_HTTP_PORT', '8102'))
+HTTP_HOST = os.getenv('HTTP_HOST', '0.0.0.0')
 
 # Optimization thresholds
 MIN_APY_IMPROVEMENT = 0.5  # Minimum 0.5% APY improvement to justify gas costs
@@ -151,10 +153,10 @@ class YieldOptimizerAgent:
                     self.send_response(404)
                     self.end_headers()
 
-        server = HTTPServer(('localhost', 8102), Handler)
+        server = HTTPServer((HTTP_HOST, HTTP_PORT), Handler)
         thread = Thread(target=server.serve_forever, daemon=True)
         thread.start()
-        logger.info(f"📡 HTTP server started on port 8102")
+        logger.info(f"📡 HTTP server started on {HTTP_HOST}:{HTTP_PORT}")
 
     def _setup_handlers(self):
         """Setup uAgents message handlers"""

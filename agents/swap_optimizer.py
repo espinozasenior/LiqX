@@ -51,7 +51,9 @@ load_dotenv()
 # ═══════════════════════════════════════════════════════
 
 AGENT_SEED = os.getenv('AGENT_SEED_SWAP_OPTIMIZER')
-AGENT_PORT = int(os.getenv('SWAP_OPTIMIZER_PORT', '8102'))
+AGENT_PORT = int(os.getenv('SWAP_OPTIMIZER_PORT', '8002'))
+HTTP_PORT = int(os.getenv('SWAP_OPTIMIZER_HTTP_PORT', '8103'))
+HTTP_HOST = os.getenv('HTTP_HOST', '0.0.0.0')
 
 # Cross-Chain Executor address (deterministic)
 EXECUTOR_ADDRESS = "agent1qtk56cc7z5499vuh43n5c4kzhve5u0khn7awcwsjn9eqfe3u2gsv7fwrrqq"
@@ -150,10 +152,10 @@ class SwapOptimizerAgent:
                     self.send_response(404)
                     self.end_headers()
 
-        server = HTTPServer(('localhost', 8103), Handler)
+        server = HTTPServer((HTTP_HOST, HTTP_PORT), Handler)
         thread = Thread(target=server.serve_forever, daemon=True)
         thread.start()
-        logger.info(f"📡 HTTP server started on port 8103")
+        logger.info(f"📡 HTTP server started on {HTTP_HOST}:{HTTP_PORT}")
 
     def _setup_handlers(self):
         """Setup uAgents message handlers"""

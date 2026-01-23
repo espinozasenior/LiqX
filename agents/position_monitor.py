@@ -48,6 +48,8 @@ load_dotenv()
 
 AGENT_SEED = os.getenv('AGENT_SEED_POSITION_MONITOR')
 AGENT_PORT = int(os.getenv('POSITION_MONITOR_PORT', '8000'))
+HTTP_PORT = int(os.getenv('POSITION_MONITOR_HTTP_PORT', '8101'))
+HTTP_HOST = os.getenv('HTTP_HOST', '0.0.0.0')
 DEPLOY_MODE = os.getenv('DEPLOY_MODE', 'local')
 
 # Risk thresholds
@@ -493,10 +495,10 @@ class PositionMonitorAgent:
                     self.send_response(404)
                     self.end_headers()
 
-        server = HTTPServer(('localhost', 8101), Handler)
+        server = HTTPServer((HTTP_HOST, HTTP_PORT), Handler)
         thread = Thread(target=server.serve_forever, daemon=True)
         thread.start()
-        logger.info(f"📡 HTTP server started on port 8101")
+        logger.info(f"📡 HTTP server started on {HTTP_HOST}:{HTTP_PORT}")
 
     def _setup_handlers(self):
         """Setup uAgents message handlers"""

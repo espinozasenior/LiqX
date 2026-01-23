@@ -52,7 +52,9 @@ load_dotenv()
 # ═══════════════════════════════════════════════════════
 
 AGENT_SEED = os.getenv('AGENT_SEED_EXECUTOR')
-AGENT_PORT = int(os.getenv('EXECUTOR_PORT', '8121'))
+AGENT_PORT = int(os.getenv('EXECUTOR_PORT', '8003'))
+HTTP_PORT = int(os.getenv('EXECUTOR_HTTP_PORT', '8122'))
+HTTP_HOST = os.getenv('HTTP_HOST', '0.0.0.0')
 
 # Position Monitor address (for results)
 POSITION_MONITOR_ADDRESS = "agent1qvvp0sl4xwj04jjheaqwl9na6n4ef8zqrv55qfw96jv2584ze0v6cehs64a"
@@ -141,10 +143,10 @@ class CrossChainExecutorAgent:
                     self.send_response(404)
                     self.end_headers()
 
-        server = HTTPServer(('localhost', 8122), Handler)
+        server = HTTPServer((HTTP_HOST, HTTP_PORT), Handler)
         thread = Thread(target=server.serve_forever, daemon=True)
         thread.start()
-        logger.info(f"📡 HTTP server started on port 8122")
+        logger.info(f"📡 HTTP server started on {HTTP_HOST}:{HTTP_PORT}")
 
     def _setup_handlers(self):
         """Setup uAgents message handlers"""
