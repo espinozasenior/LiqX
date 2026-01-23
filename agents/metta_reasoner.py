@@ -17,9 +17,9 @@ try:
     HYPERON_AVAILABLE = True
     logger.success(
         "✅ Hyperon module loaded - using real MeTTa symbolic reasoning")
-except ImportError:
+except ImportError as e:
     HYPERON_AVAILABLE = False
-    logger.warning("⚠️  Hyperon not available - using fallback logic")
+    logger.warning(f"⚠️  Hyperon not available - using fallback logic. Error: {e}")
 
 
 class MeTTaReasoner:
