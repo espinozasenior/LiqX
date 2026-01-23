@@ -1,0 +1,82 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv
+venv
+ENV
+env
+.eggs
+*.egg-info
+*.egg
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# Node.js (frontend - not needed for agents)
+node_modules
+.next
+out
+build
+dist
+.npm
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Environment files (use docker-compose env vars instead)
+.env
+.env.local
+.env.*.local
+
+# Documentation
+*.md
+!README.md
+
+# Test files
+tests
+test
+*.test.py
+*.spec.py
+
+# Logs
+*.log
+logs
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Lock files (we use uv.lock)
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Frontend source (not needed for agents)
+src
+public
+*.tsx
+*.jsx
+*.ts
+!fusion_plus_service.ts
+
+# Contract files (not needed for agents)
+liqx_contracts
+liq-x
+
+# Config files not needed in container
+eslint.config.mjs
+postcss.config.mjs
+next.config.ts
+tsconfig*.json
+next-env.d.ts

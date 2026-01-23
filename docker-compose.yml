@@ -1,0 +1,144 @@
+# LiqX Multi-Agent System - Docker Compose
+# Run all 4 agents with a single command: docker compose up
+
+services:
+  # ═══════════════════════════════════════════════════════
+  # Position Monitor Agent
+  # Monitors DeFi positions and detects liquidation risks
+  # ═══════════════════════════════════════════════════════
+  position-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: liqx-position-monitor
+    command: ["python", "agents/position_monitor.py"]
+    environment:
+      - PYTHONPATH=/app
+      - AGENT_SEED_POSITION_MONITOR=${AGENT_SEED_POSITION_MONITOR}
+      - POSITION_MONITOR_PORT=8000
+      - POSITION_MONITOR_HTTP_PORT=8101
+      - HTTP_HOST=0.0.0.0
+      - DEPLOY_MODE=${DEPLOY_MODE:-local}
+      - CRITICAL_HEALTH_FACTOR=${CRITICAL_HEALTH_FACTOR:-1.3}
+      - MODERATE_HEALTH_FACTOR=${MODERATE_HEALTH_FACTOR:-1.5}
+      - SAFE_HEALTH_FACTOR=${SAFE_HEALTH_FACTOR:-1.8}
+      - COINGECKO_API_KEY=${COINGECKO_API_KEY:-}
+      - NEXT_PUBLIC_SUBGRAPH_URL=${NEXT_PUBLIC_SUBGRAPH_URL:-}
+    ports:
+      - "8000:8000"   # uAgent port
+      - "8101:8101"   # HTTP API port
+    networks:
+      - liqx-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8101/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # ═══════════════════════════════════════════════════════
+  # Yield Optimizer Agent
+  # Finds optimal yield strategies using DeFi Llama data
+  # ═══════════════════════════════════════════════════════
+  yield-optimizer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: liqx-yield-optimizer
+    command: ["python", "agents/yield_optimizer.py"]
+    environment:
+      - PYTHONPATH=/app
+      - AGENT_SEED_YIELD_OPTIMIZER=${AGENT_SEED_YIELD_OPTIMIZER}
+      - YIELD_OPTIMIZER_PORT=8001
+      - YIELD_OPTIMIZER_HTTP_PORT=8102
+      - HTTP_HOST=0.0.0.0
+    ports:
+      - "8001:8001"   # uAgent port
+      - "8102:8102"   # HTTP API port
+    networks:
+      - liqx-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8102/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      position-monitor:
+        condition: service_healthy
+
+  # ═══════════════════════════════════════════════════════
+  # Swap Optimizer Agent
+  # Calculates optimal swap routes using 1inch Fusion+ API
+  # ═══════════════════════════════════════════════════════
+  swap-optimizer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: liqx-swap-optimizer
+    command: ["python", "agents/swap_optimizer.py"]
+    environment:
+      - PYTHONPATH=/app
+      - AGENT_SEED_SWAP_OPTIMIZER=${AGENT_SEED_SWAP_OPTIMIZER}
+      - SWAP_OPTIMIZER_PORT=8002
+      - SWAP_OPTIMIZER_HTTP_PORT=8103
+      - HTTP_HOST=0.0.0.0
+      - ONEINCH_API_KEY=${ONEINCH_API_KEY}
+      - ONEINCH_BASE_URL=${ONEINCH_BASE_URL:-https://api.1inch.dev}
+    ports:
+      - "8002:8002"   # uAgent port
+      - "8103:8103"   # HTTP API port
+    networks:
+      - liqx-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8103/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      yield-optimizer:
+        condition: service_healthy
+
+  # ═══════════════════════════════════════════════════════
+  # Cross-Chain Executor Agent
+  # Executes cross-chain transactions and bridges
+  # ═══════════════════════════════════════════════════════
+  cross-chain-executor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: liqx-executor
+    command: ["python", "agents/cross_chain_executor.py"]
+    environment:
+      - PYTHONPATH=/app
+      - AGENT_SEED_EXECUTOR=${AGENT_SEED_EXECUTOR}
+      - EXECUTOR_PORT=8003
+      - EXECUTOR_HTTP_PORT=8122
+      - HTTP_HOST=0.0.0.0
+      - ETHEREUM_RPC_URL=${ETHEREUM_RPC_URL:-}
+      - ARBITRUM_RPC_URL=${ARBITRUM_RPC_URL:-}
+      - ONEINCH_API_KEY=${ONEINCH_API_KEY}
+    ports:
+      - "8003:8003"   # uAgent port
+      - "8122:8122"   # HTTP API port
+    networks:
+      - liqx-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8122/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      swap-optimizer:
+        condition: service_healthy
+
+networks:
+  liqx-network:
+    driver: bridge
+    name: liqx-network

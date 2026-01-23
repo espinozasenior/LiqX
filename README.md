@@ -687,7 +687,37 @@ cp .env.example .env
 
 ### Running the Demo
 
-**Start all agents** (4 terminal windows):
+#### Option 1: Docker Compose (Recommended) 🐳
+
+Run all 4 agents with a single command:
+
+```bash
+# 1. Configure environment variables
+cp .env.example .env
+# Edit .env and add your API keys (ONEINCH_API_KEY, agent seeds, etc.)
+
+# 2. Start all agents
+docker compose up --build
+
+# Or run in detached mode
+docker compose up -d --build
+
+# View logs
+docker compose logs -f
+
+# Stop all agents
+docker compose down
+```
+
+**Agent Endpoints** (after starting):
+| Agent | uAgent Port | HTTP API Port | Status Endpoint |
+|-------|-------------|---------------|-----------------|
+| Position Monitor | 8000 | 8101 | http://localhost:8101/status |
+| Yield Optimizer | 8001 | 8102 | http://localhost:8102/status |
+| Swap Optimizer | 8002 | 8103 | http://localhost:8103/status |
+| Cross-Chain Executor | 8003 | 8122 | http://localhost:8122/status |
+
+#### Option 2: Manual Setup (4 terminal windows)
 
 ```bash
 # Terminal 1: Position Monitor
