@@ -17,6 +17,7 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.8",
     "dotenv": "^17.2.3",
+    "ethers": "^6.16.0",
     "framer-motion": "^12.23.24",
     "graphql": "^16.11.0",
     "graphql-request": "^7.3.1",

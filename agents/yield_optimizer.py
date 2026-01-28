@@ -47,6 +47,7 @@ AGENT_SEED = os.getenv('AGENT_SEED_YIELD_OPTIMIZER')
 AGENT_PORT = int(os.getenv('YIELD_OPTIMIZER_PORT', '8001'))
 HTTP_PORT = int(os.getenv('YIELD_OPTIMIZER_HTTP_PORT', '8102'))
 HTTP_HOST = os.getenv('HTTP_HOST', '0.0.0.0')
+AGENT_ENDPOINT_HOST = os.getenv('AGENT_ENDPOINT_HOST', 'localhost')
 
 # Optimization thresholds
 MIN_APY_IMPROVEMENT = 0.5  # Minimum 0.5% APY improvement to justify gas costs
@@ -68,7 +69,7 @@ class YieldOptimizerAgent:
             name="yield_optimizer",
             seed=AGENT_SEED,
             port=AGENT_PORT,
-            endpoint=[f"http://localhost:{AGENT_PORT}/submit"]
+            endpoint=[f"http://{AGENT_ENDPOINT_HOST}:{AGENT_PORT}/submit"]
         )
 
         # Data managers

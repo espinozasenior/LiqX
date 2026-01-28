@@ -50,6 +50,7 @@ AGENT_SEED = os.getenv('AGENT_SEED_POSITION_MONITOR')
 AGENT_PORT = int(os.getenv('POSITION_MONITOR_PORT', '8000'))
 HTTP_PORT = int(os.getenv('POSITION_MONITOR_HTTP_PORT', '8101'))
 HTTP_HOST = os.getenv('HTTP_HOST', '0.0.0.0')
+AGENT_ENDPOINT_HOST = os.getenv('AGENT_ENDPOINT_HOST', 'localhost')
 DEPLOY_MODE = os.getenv('DEPLOY_MODE', 'local')
 
 # Risk thresholds
@@ -77,7 +78,7 @@ class PositionMonitorAgent:
             name="position_monitor",
             seed=AGENT_SEED,
             port=AGENT_PORT,
-            endpoint=[f"http://localhost:{AGENT_PORT}/submit"]
+            endpoint=[f"http://{AGENT_ENDPOINT_HOST}:{AGENT_PORT}/submit"]
         )
 
         # Data managers

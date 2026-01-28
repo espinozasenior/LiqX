@@ -54,6 +54,7 @@ AGENT_SEED = os.getenv('AGENT_SEED_SWAP_OPTIMIZER')
 AGENT_PORT = int(os.getenv('SWAP_OPTIMIZER_PORT', '8002'))
 HTTP_PORT = int(os.getenv('SWAP_OPTIMIZER_HTTP_PORT', '8103'))
 HTTP_HOST = os.getenv('HTTP_HOST', '0.0.0.0')
+AGENT_ENDPOINT_HOST = os.getenv('AGENT_ENDPOINT_HOST', 'localhost')
 
 # Cross-Chain Executor address (deterministic)
 EXECUTOR_ADDRESS = "agent1qtk56cc7z5499vuh43n5c4kzhve5u0khn7awcwsjn9eqfe3u2gsv7fwrrqq"
@@ -76,7 +77,7 @@ class SwapOptimizerAgent:
             name="swap_optimizer",
             seed=AGENT_SEED,
             port=AGENT_PORT,
-            endpoint=[f"http://localhost:{AGENT_PORT}/submit"]
+            endpoint=[f"http://{AGENT_ENDPOINT_HOST}:{AGENT_PORT}/submit"]
         )
 
         # State

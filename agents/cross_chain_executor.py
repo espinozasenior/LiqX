@@ -55,6 +55,7 @@ AGENT_SEED = os.getenv('AGENT_SEED_EXECUTOR')
 AGENT_PORT = int(os.getenv('EXECUTOR_PORT', '8003'))
 HTTP_PORT = int(os.getenv('EXECUTOR_HTTP_PORT', '8122'))
 HTTP_HOST = os.getenv('HTTP_HOST', '0.0.0.0')
+AGENT_ENDPOINT_HOST = os.getenv('AGENT_ENDPOINT_HOST', 'localhost')
 
 # Position Monitor address (for results)
 POSITION_MONITOR_ADDRESS = "agent1qvvp0sl4xwj04jjheaqwl9na6n4ef8zqrv55qfw96jv2584ze0v6cehs64a"
@@ -77,7 +78,7 @@ class CrossChainExecutorAgent:
             name="cross_chain_executor",
             seed=AGENT_SEED,
             port=AGENT_PORT,
-            endpoint=[f"http://localhost:{AGENT_PORT}/submit"]
+            endpoint=[f"http://{AGENT_ENDPOINT_HOST}:{AGENT_PORT}/submit"]
         )
 
         # State

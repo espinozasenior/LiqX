@@ -4,7 +4,7 @@ import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
  * LiquidityGuardVault Deployment Module
  * 
  * This module deploys the LiqX LiquidityGuardVault contract with protocol addresses.
- * Supports Ethereum Mainnet, Sepolia testnet, and other networks.
+ * Supports Ethereum Mainnet, Sepolia, Optimism, and Arbitrum.
  */
 
 // ============================================
@@ -36,15 +36,59 @@ const SEPOLIA_ADDRESSES = {
 };
 
 // ============================================
+// OPTIMISM ADDRESSES
+// ============================================
+const OPTIMISM_ADDRESSES = {
+  AAVE_POOL: "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+  LIDO: "0x12d8Ce035c5DE3Ce39B1FDD4C1d5a745EAbA3b8C", // wstETH (No stETH on L2)
+  WSTETH: "0x12d8Ce035c5DE3Ce39B1FDD4C1d5a745EAbA3b8C", // wstETH is the main token
+  COMPOUND_COMPTROLLER: "0x0000000000000000000000000000000000000001", // Placeholder (Use Comet for V3)
+  ONEINCH_ROUTER: "0x1111111254EEB25477B68fb85Ed929f73A960582",
+  UNISWAP_V3_ROUTER: "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+  UNISWAP_V2_ROUTER: "0x0000000000000000000000000000000000000000", // No UniV2 on Optimism usually (Use V3)
+  USDC: "0x0b2C639c53a9AD07A9793eb9d3C64d2139e37a1B", // Native USDC
+};
+
+// ============================================
+// ARBITRUM ADDRESSES
+// ============================================
+const ARBITRUM_ADDRESSES = {
+  AAVE_POOL: "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+  LIDO: "0x5979D7b546E38E414F7E9822514be443A4800529", // wstETH
+  WSTETH: "0x5979D7b546E38E414F7E9822514be443A4800529",
+  COMPOUND_COMPTROLLER: "0x0000000000000000000000000000000000000001",
+  ONEINCH_ROUTER: "0x1111111254EEB25477B68fb85Ed929f73A960582",
+  UNISWAP_V3_ROUTER: "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+  UNISWAP_V2_ROUTER: "0x0000000000000000000000000000000000000000",
+  USDC: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831", // Native USDC
+};
+
+// ============================================
+// BASE ADDRESSES
+// ============================================
+const BASE_ADDRESSES = {
+  AAVE_POOL: "0xA238Dd80C259a72e81d7e4664a9801593F98d1c5",
+  LIDO: "0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452", // wstETH
+  WSTETH: "0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452",
+  COMPOUND_COMPTROLLER: "0xb125E6687d4313864e53df431d5425969c15Eb2F", // cUSDCv3 Proxy
+  ONEINCH_ROUTER: "0x1111111254EEB25477B68fb85Ed929f73A960582",
+  UNISWAP_V3_ROUTER: "0x2626664c2603336E57B271c5C0b26F421741e481",
+  UNISWAP_V2_ROUTER: "0x0000000000000000000000000000000000000000",
+  USDC: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+};
+
+// ============================================
 // DEPLOYMENT MODULE
 // ============================================
 export default buildModule("LiquidityGuardVaultModule", (m) => {
-  // Default to Sepolia addresses for testing
-  // To deploy on mainnet, manually change to MAINNET_ADDRESSES
-  const addresses = SEPOLIA_ADDRESSES;
-  const networkName = "sepolia";
-  
-  console.log(`\n🚀 Deploying LiquidityGuardVault on ${networkName}...`);
+  // ---------------------------------------------------------
+  // ⚠️ SELECT NETWORK CONFIGURATION HERE
+  // ---------------------------------------------------------
+  // Change this variable to: MAINNET_ADDRESSES, OPTIMISM_ADDRESSES, ARBITRUM_ADDRESSES, or BASE_ADDRESSES
+  const addresses = SEPOLIA_ADDRESSES; 
+  // ---------------------------------------------------------
+
+  console.log(`\n🚀 Deploying LiquidityGuardVault...`);
   console.log(`📍 Protocol Addresses:`);
   console.log(`  - Aave Pool: ${addresses.AAVE_POOL}`);
   console.log(`  - Lido (stETH): ${addresses.LIDO}`);
@@ -67,7 +111,7 @@ export default buildModule("LiquidityGuardVaultModule", (m) => {
     addresses.USDC,
   ]);
 
-  // Call afterDeploy to log deployment info
+  // Verify Admin Role
   m.call(vault, "hasRole", [
     "0x0000000000000000000000000000000000000000000000000000000000000000", // DEFAULT_ADMIN_ROLE
     m.getAccount(0),
