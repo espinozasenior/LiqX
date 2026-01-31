@@ -51,3 +51,10 @@ out/
 htmlcov/
 .pytest_cache/
 .env
+
+# Code Agents
+
+
+.trae/
+.claude/
+fintech-starter-app/
